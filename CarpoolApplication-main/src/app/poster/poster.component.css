@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Tajawal";
+    src: url(/assets/carpool/Tajawal\ Black\ Regular.ttf);
+  }
+
+h1 {
+    font-style: italic;
+    font-size: 80px;
+    font-family: "Tajawal", sans-serif;
+    line-height: 70px;
+    font-weight: bold;
+  }
+
+  .tag-line {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 5px;
+  }
+
+  .heading1{
+    color: #ffac19;
+  }
+
+  .heading2{
+    color: #9319FF;
+  }
+
+  .poster-img{
+    width: 61vw;
+    height: 43vh;
+}

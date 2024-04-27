@@ -1,0 +1,281 @@
+<div class="ride-form-container shadow-lg">
+  <div class="form-heading">
+    <h1 class="title">{{ formHeading }}</h1>
+    <label class="switch">
+      <input
+        type="checkbox"
+        [checked]="showNextButton"
+        (change)="toggleRideType($event)"
+      />
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <p class="tag-line">we get you the matches asap !</p>
+  <div *ngIf="showFirstSection">
+    <form [formGroup]="firstForm" (ngSubmit)="submitForm()">
+      <div class="m-2">
+        <span class="input-text">From</span>
+        <select formControlName="from" class="select-input">
+          <option *ngFor="let city of cityData" [value]="city.cityId">
+            {{ city.cityName }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            firstForm.get('from')?.invalid &&
+            firstForm.get('from')?.hasError('required') &&
+            firstForm.get('from')?.touched
+          "
+          class="error-message"
+        >
+          From city is required.
+        </div>
+      </div>
+      <div class="m-2">
+        <span class="input-text">To </span>
+        <select formControlName="to" class="select-input">
+          <option *ngFor="let city of cityData" [value]="city.cityId">
+            {{ city.cityName }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            firstForm.get('to')?.invalid &&
+            firstForm.get('to')?.hasError('required') &&
+            firstForm.get('to')?.touched
+          "
+          class="error-message"
+        >
+          To city is required.
+        </div>
+      </div>
+      <div class="m-2">
+        <label class="input-text"
+          >Date
+          <input
+            formControlName="date"
+            class="select-input"
+            placeholder="xx/mm/yyyy"
+            type="date"
+        /></label>
+        <div
+          *ngIf="
+            firstForm.get('date')?.invalid &&
+            firstForm.get('date')?.hasError('required') &&
+            firstForm.get('date')?.touched
+          "
+          class="error-message"
+        >
+          Date is required.
+        </div>
+      </div>
+      <div class="button-div mt-2">
+        <p class="input-text m-0">Time</p>
+        <label
+          class="btn time-button"
+          [class.active]="firstForm.get('timeslot')?.value === '5am-9am'"
+        >
+          <input
+            class="btn-check"
+            type="radio"
+            formControlName="timeslot"
+            value="5am-9am"
+          />
+          5am-9am
+        </label>
+        <label
+          class="btn time-button"
+          [class.active]="firstForm.get('timeslot')?.value === '9am-12pm'"
+        >
+          <input
+            class="btn-check"
+            type="radio"
+            formControlName="timeslot"
+            value="9am-12pm"
+          />
+          9am-12pm
+        </label>
+        <label
+          class="btn time-button"
+          [class.active]="firstForm.get('timeslot')?.value === '12pm-3pm'"
+        >
+          <input
+            class="btn-check"
+            type="radio"
+            formControlName="timeslot"
+            value="12pm-3pm"
+          />
+          12pm-3pm
+        </label>
+        <label
+          class="btn time-button"
+          [class.active]="firstForm.get('timeslot')?.value === '3pm-6pm'"
+        >
+          <input
+            class="btn-check"
+            type="radio"
+            formControlName="timeslot"
+            value="3pm-6pm"
+          />
+          3pm-6pm
+        </label>
+        <label
+          class="btn time-button"
+          [class.active]="firstForm.get('timeslot')?.value === '6pm-9pm'"
+        >
+          <input
+            class="btn-check"
+            type="radio"
+            formControlName="timeslot"
+            value="6pm-9pm"
+          />
+          6pm-9pm
+        </label>
+        <div
+          *ngIf="
+            firstForm.get('timeslot')?.invalid &&
+            firstForm.get('timeslot')?.hasError('required') &&
+            firstForm.get('timeslot')?.touched
+          "
+          class="error-message"
+        >
+          Please select a time slot.
+        </div>
+      </div>
+      <div class="text-end">
+        <label
+          *ngIf="!showNextButton"
+          class="next-button"
+          (click)="nextStep()"
+          type="button"
+        >
+          Next <span class="chevron">>></span>
+        </label>
+      </div>
+      <div class="text-start">
+        <button
+          class="submit-button"
+          [disabled]="firstForm.invalid"
+          *ngIf="showNextButton"
+          type="submit"
+        >
+          {{ buttonText }}
+        </button>
+      </div>
+      <div class="from-to-div">
+        <span class="start-stop"></span>
+        <span class="stop"></span>
+        <span class="stop"></span>
+        <span class="stop"></span>
+        <span class="stop"></span>
+        <i class="bi bi-geo-alt-fill"></i>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="showSecondSection">
+    <form [formGroup]="secondForm">
+      <div formArrayName="stops" class="stops-div">
+        <div
+          class="stop-group"
+          *ngFor="let stopControl of stopsControls; let i = index"
+        >
+          <span class="input-text">Stop {{ i + 1 }}</span>
+          <select [formControlName]="i" class="select-input">
+            <option *ngFor="let city of cityData" [value]="city.cityId">
+              {{ city.cityName }}
+            </option>
+          </select>
+          <div
+            *ngIf="stopControl.invalid && stopControl.hasError('required') && stopControl.touched"
+            class="error-message"
+          >
+            Stop is required.
+          </div>
+        </div>
+        <i class="bi bi-plus" type="button" (click)="addStop()"></i>
+
+      </div>
+      <div class="text-end">
+      </div>
+      <div class="d-flex align-items-center">
+        <label class="input-text"
+          >Available Seats
+          <div class="d-flex mt-3">
+            <label
+              class="seat-button"
+              [class.active]="secondForm.get('availableSeats')?.value === '1'"
+            >
+              <input
+                class="btn-check"
+                type="radio"
+                formControlName="availableSeats"
+                value="1"
+              />
+              1
+            </label>
+            <label
+              class="seat-button mx-2"
+              [class.active]="secondForm.get('availableSeats')?.value === '2'"
+            >
+              <input
+                class="btn-check"
+                type="radio"
+                formControlName="availableSeats"
+                value="2"
+              />
+              2
+            </label>
+            <label
+              class="seat-button"
+              [class.active]="secondForm.get('availableSeats')?.value === '3'"
+            >
+              <input
+                class="btn-check"
+                type="radio"
+                formControlName="availableSeats"
+                value="3"
+              />
+              3
+            </label>
+            <div
+              *ngIf="
+                secondForm.get('availableSeats')?.invalid &&
+                secondForm.get('availableSeats')?.hasError('required') &&
+                secondForm.get('availableSeats')?.touched
+              "
+              class="error-message"
+            >
+              Please select the number of available seats.
+            </div>
+          </div>
+        </label>
+        <label class="ms-auto input-text"
+          >Price: <br /><span class="price-text"
+            >{{ secondForm.get("availableSeats")?.value * perSeatPrice }}$</span
+          >
+        </label>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <button class="submit-button"  [disabled]="firstForm.invalid || secondForm.invalid" (click)="submitForm()">
+          {{ buttonText }}
+        </button>
+        <label
+          *ngIf="!showNextButton"
+          class="next-button"
+          (click)="backToFirstStep()"
+          type="button"
+        >
+          <span class="chevron"><<</span> Back
+        </label>
+      </div>
+      <div class="from-to-div">
+        <span class="start-stop"></span>
+        <ng-container *ngFor="let stopControl of stopsControls">
+          <span class="stop"></span>
+          <span class="stop"></span>
+        </ng-container>
+        <i class="bi bi-geo-alt-fill"></i>
+      </div>      
+    </form>
+  </div>
+</div>

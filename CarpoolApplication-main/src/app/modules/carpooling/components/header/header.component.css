@@ -1,0 +1,22 @@
+
+.user-name{
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+.user-image{
+    width: 50px;
+    border-radius: 6rem;
+    margin-left: 10px;
+}
+
+.logo{
+    border-style: none;
+    color: transparent;
+    cursor: pointer;
+}
+
+.dropdown-toggle::after {
+    content: none !important;
+}

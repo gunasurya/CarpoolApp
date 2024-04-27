@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "Tajawal";
+  src: url(/assets/carpool/Tajawal\ Black\ Regular.ttf);
+}
+.poster-div {
+  background-image: url("/assets/carpool/SignUpLogin.png");
+  background-size: cover;
+}
+h1 {
+  font-style: italic;
+  font-size: 80px;
+  font-family: "Tajawal", sans-serif;
+  line-height: 70px;
+  font-weight: bold;
+}
+
+.signup-form {
+  background-color: #ffac19;
+  padding-top: 5rem;
+  background-image: url("/assets/carpool/Bg3.png");
+  background-size: cover;
+  background-position: bottom right;
+}
+
+.signup-link {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.log-text {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.submit-button {
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px 35px;
+  display: flex;
+  border-style: none;
+  font-size: 0.8rem;
+  margin: 1rem auto;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #9319ff;
+}
+.signup-title {
+  color: whitesmoke;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.input {
+  background-color: whitesmoke;
+  border: 0;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px;
+  height: 100%;
+  outline: 0;
+  padding: 10px 10px;
+  width: 80%;
+}
+.underline {
+  width: 60px;
+  height: 0;
+  margin: 0.2rem 10rem;
+  border-bottom: 2px solid white;
+}
+.input::placeholder {
+  color: #d1d1d1;
+}
+
+.input-container {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+
+.visible-button {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  color: #d1d1d1;
+}
+
+.msg-error {
+  color: red;
+}
+.row {
+  --bs-gutter-x: 0rem;
+}

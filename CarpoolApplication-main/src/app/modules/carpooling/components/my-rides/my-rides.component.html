@@ -1,0 +1,135 @@
+<div class="my-rides-container">
+  <div class="row pt-5">
+    <div class="col-6 scrollable-div">
+      <p class="custom-ride book-color">Booked Rides</p>
+      <div
+        *ngIf="bookedRides && bookedRides.length > 0; else noBookRidesMessage"
+      >
+        <div class="match-card shadow-lg" *ngFor="let ride of bookedRides">
+          <div class="user-info-div flex-grow-1">
+            <p class="user-name">{{ ride.driverName }}</p>
+            <div class="d-flex align-items-center row justify-content-between">
+              <span class="text-left col-3">
+                <label class="p-0">From</label>
+                <p class="user-info">{{ ride.departureCityName }}</p>
+              </span>
+              <span
+                class="d-flex flex-column justify-content-end col-5 map-div"
+              >
+                <div class="from-to-div">
+                  <span class="start-stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+              </span>
+              <span class="text-left col-4">
+                <label class="p-0">To</label>
+                <p class="user-info">{{ ride.destinationCityName }}</p>
+              </span>
+            </div>
+            <div class="d-flex justify-content-between row align-items-center">
+              <span class="text-left col-4">
+                <label class="p-0">Date</label>
+                <p class="user-info">{{ ride.date | date : "dd/MM/yyyy" }}</p>
+              </span>
+              <span class="col-4"> </span>
+              <span class="text-left col-4">
+                <label class="p-0">Time</label>
+                <p class="user-info">{{ ride.timeSlot }}</p>
+              </span>
+            </div>
+            <div class="d-flex justify-content-between row align-items-center">
+              <span class="text-left col-4">
+                <label class="p-0">Price</label>
+                <p class="user-info">{{ ride.fare }}$</p>
+              </span>
+              <span class="col-4"> </span>
+              <span class="text-left  col-4">
+                <label class="p-0">Seats</label>
+                <p class="user-info">{{ ride.availableSeats | number:'2.0'}}</p>
+              </span>
+            </div>
+          </div>
+          <div>
+            <img class="user-image" src="{{ ride.driverImage }}" alt="" />
+          </div>
+        </div>
+      </div>
+      <ng-template #noBookRidesMessage>
+        <div class="text-left">
+          <p>{{ NoOfferedRidesMessage }}</p>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-6 scrollable-div">
+      <p class="custom-ride offer-color">Offered Rides</p>
+      <div
+        *ngIf="
+          offeredRides && offeredRides.length > 0;
+          else noOfferRidesMessage
+        "
+      >
+        <div class="match-card shadow-lg" *ngFor="let ride of offeredRides">
+          <div class="user-info-div flex-grow-1">
+            <p class="user-name">{{ ride.passengerName }}</p>
+            <div class="d-flex align-items-center row justify-content-between">
+              <span class="text-left col-3">
+                <label class="p-0">From</label>
+                <p class="user-info">{{ ride.pickupLocation }}</p>
+              </span>
+              <span
+                class="d-flex flex-column justify-content-end col-5 map-div"
+              >
+                <div class="from-to-div">
+                  <span class="start-stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+              </span>
+              <span class="text-left col-4">
+                <label class="p-0">To</label>
+                <p class="user-info">{{ ride.dropLocation }}</p>
+              </span>
+            </div>
+            <div class="d-flex justify-content-between row align-items-center">
+              <span class="text-left col-4">
+                <label class="p-0">Date</label>
+                <p class="user-info">{{ ride.date | date : "dd/MM/yyyy" }}</p>
+              </span>
+              <span class="col-4"></span>
+              <span class="text-left col-4">
+                <label class="p-0">Time</label>
+                <p class="user-info">{{ ride.timeSlot }}</p>
+              </span>
+            </div>
+            <div class="d-flex justify-content-between row align-items-center">
+              <span class="text-left col-4">
+                <label class="p-0">Price</label>
+                <p class="user-info">{{ ride.fare }}$</p>
+              </span>
+              <span class="col-4"></span>
+              <span class="text-left  col-4">
+                <label class="p-0">Seats</label>
+                <p class="user-info">{{ ride.reservedSeats | number:'2.0'}}</p>
+              </span>
+            </div>
+          </div>
+          <div>
+            <img class="user-image" src="{{ ride.passengerImage }}" alt="" />
+          </div>
+        </div>
+      </div>
+      <ng-template #noOfferRidesMessage>
+        <div class="text-left">
+          <p>{{ NoOfferedRidesMessage }}</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

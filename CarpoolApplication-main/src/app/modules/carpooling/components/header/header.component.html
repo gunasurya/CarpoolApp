@@ -1,0 +1,18 @@
+<div id="navBar">
+    <div class="container d-flex pt-2">
+        <div id="logo">
+            <img routerLink="/carpool/home" class="logo" src="/assets/carpool/logo.png" alt="" />
+          </div>
+          <div ngbDropdown class="ms-auto">
+            <div class="d-flex justify-content-end align-items-center" ngbDropdownToggle>
+              <p class="user-name">{{user?.userName}}</p>
+              <img class="user-image" src={{user?.image}} alt="" />
+            </div>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem routerLink="/carpool/profile">Profile</button>
+              <button ngbDropdownItem routerLink="/carpool/my-rides">My Rides</button>
+              <button ngbDropdownItem (click)="logOut()">Logout</button>
+            </div>
+          </div>
+    </div>
+</div>

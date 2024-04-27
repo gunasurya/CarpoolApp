@@ -1,0 +1,68 @@
+<div class="row">
+<div class="col-8 ps-5">
+<app-poster></app-poster>
+</div>
+<div class="col-4 login-form">
+    <div class="text-center">
+          <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+            <div class="login-title">Log In</div>
+            <div class="underline"></div>
+            <div class="input-container">
+              <input
+                type="email"
+                formControlName="email"
+                name="email"
+                class="input"
+                placeholder="Email"
+              />
+            </div>
+            <div
+              class="msg-error"
+              *ngIf="
+                loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+              "
+            >
+              <span *ngIf="loginForm.get('email')?.errors?.['required']">
+                *Email is required
+              </span>
+              <span *ngIf="loginForm.get('email')?.errors?.['email']">
+                *Invalid email format
+              </span>
+            </div>
+      
+            <div class="input-container">
+              <input
+                type="password"
+                formControlName="password"
+                name="password"
+                class="input"
+                placeholder="Password"
+              />
+            </div>
+            <div
+              class="msg-error"
+              *ngIf="
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+              "
+            >
+              <span *ngIf="loginForm.get('password')?.errors?.['required']">
+                *Password is required
+              </span>
+            </div>
+            <div class="d-flex flex-column">
+                <button
+                type="submit"
+                id="submitBtn"
+                class="submit-button"
+                [disabled]="loginForm.invalid"
+              >
+                Submit
+              </button>
+              <a routerLink="/signup" class="login-link">*Not a member yet? <span class="log-text">SIGN UP</span></a>
+            </div>
+          </form>
+        
+      </div>      
+</div>
+</div>
