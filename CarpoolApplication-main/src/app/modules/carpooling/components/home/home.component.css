@@ -1,0 +1,42 @@
+.card {
+  width: 220px;
+  height: 140px;
+  text-align: center;
+  border-radius: 5px;
+  border-style: none;
+  margin: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.home-div {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.book-card-color{
+background-color: #ffac19;
+color: whitesmoke
+}
+
+.offer-card-color{
+background-color: #9319FF;
+color: whitesmoke;
+}
+
+.card-container{
+    position:absolute;
+    top: 10%;
+    left: 30%;
+}
+.background-image{
+    margin-top: 7rem;
+}
+
+.invite-text{
+  font-weight: bold;
+  font-size: 1.6rem;
+}

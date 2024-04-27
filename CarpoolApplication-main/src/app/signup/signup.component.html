@@ -1,0 +1,136 @@
+<div class="row">
+  <div class="col-8 ps-5">
+    <app-poster></app-poster>
+  </div>
+  <div class="col-4 signup-form">
+    <div class="text-center">
+      <form [formGroup]="signupForm" (ngSubmit)="submitForm()">
+        <div class="signup-title text-center">Sign Up</div>
+        <div class="underline"></div>
+        <div class="input-container">
+          <input
+            type="email"
+            formControlName="email"
+            class="input"
+            placeholder="Enter Email Id"
+          />
+        </div>
+
+        <div
+          class="msg-error"
+          *ngIf="
+            signupForm.get('email')?.invalid && signupForm.get('email')?.touched
+          "
+        >
+          <span *ngIf="signupForm.get('email')?.errors?.['required']">
+            *Email is required
+          </span>
+          <span *ngIf="signupForm.get('email')?.errors?.['email']">
+            *Invalid email format
+          </span>
+        </div>
+
+        <div class="input-container">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            class="input"
+            placeholder="Password (Format: Abc@1r)"
+          />
+          <button
+            class="visible-button"
+            *ngIf="showPassword"
+            (click)="togglePasswordVisibility()"
+          >
+            <i class="bi bi-eye-slash-fill"></i>
+          </button>
+          <button
+            class="visible-button"
+            *ngIf="!showPassword"
+            (click)="togglePasswordVisibility()"
+          >
+            <i class="bi bi-eye-fill"></i>
+          </button>
+        </div>
+
+        <div class="msg-error">
+          <span
+            *ngIf="
+              signupForm.get('password')?.invalid &&
+              signupForm.get('password')?.touched
+            "
+          >
+            Password is required
+          </span>
+          <span
+            *ngIf="
+              signupForm.get('password')?.invalid &&
+              signupForm.get('password')?.touched &&
+              !isPasswordValid()
+            "
+          >
+            At least 6 characters long, must contain 1 uppercase, 1 lowercase, 1
+            digit, and 1 special character
+          </span>
+        </div>
+
+        <div class="input-container">
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            class="input"
+            placeholder="Confirm Password"
+          />
+          <button
+            class="visible-button"
+            *ngIf="showConfirmPassword"
+            (click)="toggleConfirmPasswordVisibility()"
+          >
+            <i class="bi bi-eye-slash-fill"></i>
+          </button>
+          <button
+            class="visible-button"
+            *ngIf="!showConfirmPassword"
+            (click)="toggleConfirmPasswordVisibility()"
+          >
+            <i class="bi bi-eye-fill"></i>
+          </button>
+        </div>
+
+        <div class="msg-error">
+          <span
+            *ngIf="
+              signupForm.get('confirmPassword')?.invalid &&
+              signupForm.get('confirmPassword')?.touched
+            "
+          >
+            Confirm Password is required
+          </span>
+          <span
+            *ngIf="
+              (signupForm.get('confirmPassword')?.invalid &&
+                signupForm.get('confirmPassword')?.touched) ||
+              !isConfirmPasswordValid()
+            "
+          >
+            Password and confirm password should be matched
+          </span>
+        </div>
+
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="signupForm.invalid"
+        >
+          Sumbit
+        </button>
+
+        <div class="msg light"></div>
+
+        <a routerLink="/login" class="signup-link"
+          >Already a member? <span class="log-text">LOG</span> IN</a
+        >
+      </form>
+    </div>
+  </div>
+</div>

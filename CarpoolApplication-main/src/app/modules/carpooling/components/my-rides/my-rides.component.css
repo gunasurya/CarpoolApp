@@ -1,0 +1,108 @@
+.my-rides-container {
+  background-image: url("/assets/carpool/Bg2.png");
+  background-size: cover;
+  height: 87vh;
+}
+
+.custom-ride {
+  width: 150px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.book-color {
+  background-color: #9319ff;
+}
+
+.offer-color {
+  background-color: #ffac19;
+}
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 6rem;
+}
+
+.user-name {
+  font-size: 24px;
+  font-weight: 600;
+}
+.match-container {
+  padding-left: 3rem;
+}
+
+.match-title {
+  color: #9319ff;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.match-card {
+  width: 350px;
+  background-color: white;
+  border-radius: 8px;
+  border-style: none;
+  padding: 10px;
+  display: flex;
+  margin: 10px 0px;
+}
+
+.from-to-div {
+  display: flex;
+  align-items: center;
+}
+
+.map-div {
+  height: 48px;
+}
+
+.stop {
+  width: 6px;
+  height: 6px;
+  border-radius: 30px;
+  margin: 3px;
+  background-color: #e0e0e0;
+}
+
+.start-stop {
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+  border-radius: 30px;
+  background-color: #9319ff;
+}
+
+.bi::before {
+  color: #9319ff;
+  font-size: 16px;
+}
+.user-info {
+  font-size: 14px;
+}
+
+p {
+  margin-bottom: 0.2rem;
+}
+
+
+label {
+  font-size: 13px;
+  color: rgb(173, 172, 172);
+  font-weight: 500;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+
+.scrollable-div{
+  overflow:auto;
+  height: 400px;
+  padding-left: 5rem;
+}
+
+.row{
+  --bs-gutter-x: unset !important;
+}

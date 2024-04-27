@@ -1,0 +1,35 @@
+.profile-container {
+    display: flex;
+    background-image: url("/assets/carpool/Bg2.png");
+    background-size: cover;
+    height: 87vh;
+}
+
+.form-container {
+    width: 28vw;
+    padding: 1.4rem;
+    border-radius: 5px;
+    border-style: none;
+    background-color: #ffffff;
+    margin: 2rem 0rem 0rem 6rem;
+}
+
+.title {
+    font-size: 1.6rem;
+  }
+  .edit-button-color{
+    background-color: blue !important;
+  }
+
+  .button {
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 10px 35px;
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: center;
+    margin-top: 20px;
+    border-style: none;
+    background-color: #ffac19;
+  }

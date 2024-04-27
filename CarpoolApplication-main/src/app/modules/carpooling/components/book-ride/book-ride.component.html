@@ -1,0 +1,79 @@
+<div class="book-ride-container">
+  <app-ride-form
+    [formHeading]="'Book a Ride'"
+    [showFirstSection]="true"
+    [showSecondSection]="false"
+    [showNextButton]="true"
+    (formSubmitted)="submitBookRideForm($event)"
+  ></app-ride-form>
+  <div class="match-container">
+    <h1 class="match-title">Your Matches</h1>
+    <div class="match-card-container" *ngIf="matchRides && matchRides.length > 0; else noRidesMessage">
+      <div  id="{{ride.rideId}}" class="match-card shadow-lg" (click)="openSm(content,ride)" *ngFor="let ride of matchRides">
+        <div class="user-info-div flex-grow-1">
+          <p class="user-name">{{ride.driverName}}</p>
+          <div class="d-flex align-items-center justify-content-between">
+            <span class="text-left">
+              <label class="p-0">From</label>
+              <p class="user-info">{{ride.departureCityName}}</p>
+            </span>
+            <span class="d-flex flex-column justify-content-end flex-grow-1 map-div">
+                <div class="from-to-div ">
+                  <span class="start-stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <span class="stop"></span>
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+            </span>
+            <span class="text-left flex-grow-1">
+              <label class="p-0">To</label>
+              <p class="user-info">{{ride.destinationCityName}}</p>
+            </span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-left">
+              <label class="p-0">Date</label>
+              <p class="user-info">{{ride.date | date: 'dd/MM/yyyy'}}</p>
+            </span>
+            <span class="text-left user-info-text">
+              <label class="p-0">Time</label>
+              <p class="user-info">{{ride.timeSlot}}</p>
+            </span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-left">
+              <label class="p-0">Price</label>
+              <p class="user-info">{{ride.fare}}</p>
+            </span>
+            <span class="text-left">
+              <label class="p-0">Seats Availability</label>
+              <p class="user-info">{{ride.availableSeats}}</p>
+            </span>
+          </div>
+        </div>
+        <div>
+            <img class="user-image" src={{ride.driverImage}} alt="">
+        </div>
+      </div>
+    </div>
+    <ng-template #noRidesMessage>
+      <div class="text-center">
+        <p>{{ noMatchRidesMessage }}</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<ng-template #content let-modal>
+	<div class="modal-header">
+  	<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <p>Do you want to continue with {{ selectedRide?.driverUserName }} the following ride?</p>
+	</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.dismiss('Close click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="submitRide()">Submit</button>
+  </div>
+</ng-template>

@@ -1,0 +1,6 @@
+.offer-ride-container{
+    display: flex;
+    background-image: url("/assets/carpool/Bg2.png");
+    background-size: cover;
+    height: 87vh;
+}

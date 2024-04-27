@@ -1,0 +1,56 @@
+<div class="profile-container">
+    <div class="form-container shadow-lg">
+      <h1 class="title">Edit Your Profile</h1>
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <label class="my-2" for="userName">Username:</label>
+        <input
+          type="text"
+          id="userName"
+          formControlName="userName"
+          class="form-control"
+          required
+        />
+        <div *ngIf="userForm.get('userName')?.invalid && userForm.get('userName')?.hasError('pattern')">
+         Username should have only alphabets and have only 16 characters
+        </div>
+  
+        <label class="my-2" for="email">User Email:</label>
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          required
+        />
+        <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.hasError('email')">
+        Please enter a valid email address.
+        </div>
+  
+        <label class="my-2" for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+        />
+        <div *ngIf="userForm.get('password')?.invalid  && userForm.get('password')?.hasError('minlength')">
+          Password must be at least 8 characters long.
+        </div>
+  
+        <label class="my-2" for="image-input">Image:</label>
+        <input
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          id="image-input"
+          (change)="onChangeFile($event)"
+          class="form-control"
+          [disabled]="userForm.disabled"
+        />
+        <div class="d-flex justify-content-between">
+          <button type="button" class="edit-button-color button" (click)="enableForm()">Edit</button>
+          <button type="submit" class="button" [disabled]="!userForm.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
